@@ -20,8 +20,11 @@ Few Assumptions:
 
 
 class ForexAgent:
-    def __init__(self, train_mode=True):
-        self.env = ForexEnv(pair='EURUSD', lot=0.5, is_test=True, train_data=True)
+    def __init__(self, train_mode=True, balance=10000, lot=0.5):
+        self.env = ForexEnv(
+            pair='EURUSD', balance=balance, lot=lot, is_test=True,
+            train_data=True, auto_reset_env=False
+        )
 
         self.action_space_n = self.env.action_space_n
         self.state_space_n = self.env.state_space_n
@@ -48,7 +51,7 @@ class ForexAgent:
         self.update_target_model()
 
         if not train_mode:
-            self.model.load_weights('./save_model/EUR_USD_DQN_2018_2019_model.h5')
+            self.model.load_weights('./save_model/EUR_USD_DQN_model.h5')
 
     def build_model(self):
         model = models.Sequential()
@@ -106,7 +109,7 @@ class ForexAgent:
         acc_losses = 0
         took_trades = 0
         acc_trades = []
-        acc_pips = []
+        acc_bal = []
         total_trades_won = 0
         total_trades_lost = 0
         i = 0
@@ -115,7 +118,7 @@ class ForexAgent:
                 done = False
                 state = self.env.reset()
                 peak_price = 0
-                profits, losses, trades, pips_collected = 0, 0, [], []
+                profits, losses, trades, bals = 0, 0, [], []
                 while not done:
                     action = self.get_action([state]) if not self.env.open_position_exists else None
                     # We want to send do_nothing as action, to speed up the process when a position is open already
@@ -142,8 +145,8 @@ class ForexAgent:
                             # For plotting sake
                             trades.append(took_trades)
                             acc_trades.append(took_trades)
-                            acc_pips.append(acc_profits - abs(acc_losses))
-                            pips_collected.append(profits - abs(losses))
+                            acc_bal.append(self.env.balance)
+                            bals.append(self.env.balance)
                             # End for plotting sake
                             took_trades += 1
                             print(f'Got P: {profits}, L: {losses} pips for trade {took_trades}')
@@ -153,26 +156,28 @@ class ForexAgent:
                             print(f'Curr Acc Profit: {acc_profits}, Current Acc Loss: {acc_losses}, '
                                   f'Diff: {acc_profits - abs(acc_losses)}\n')
 
-                    if self.train_mode:
-                        if took_trades % 50 == 0:
-                            self.model.save_weights('./save_model/EUR_USD_DQN_2018_2019_model.h5')
-                            pylab.plot(trades, pips_collected, 'b')
-                            pylab.savefig(f"./performances/eurusd_dqn_btw_{took_trades - 50}_and_{took_trades}.png")
-                            pylab.plot(acc_trades, acc_pips, 'b')
+                    if took_trades % 50 == 0:
+                        pylab.plot(acc_trades, acc_bal, 'b')
+                        if self.train_mode:
                             pylab.savefig("./performances/eurusd_dqn.png")
+                            pylab.plot(trades, bals, 'b')
+                            pylab.savefig(f"./performances/eurusd_dqn_btw_{took_trades - 50}_and_{took_trades}.png")
+                            self.model.save_weights('./save_model/EUR_USD_DQN_model.h5')
+                        else:
+                            pylab.savefig("./performances/eurusd_dqn_test_data.png")
 
-                    if took_trades % 200 == 0:
-                        self.model.save_weights(f'./save_model/EUR_USD_DQN_after_{took_trades}_2018_2019_trades.h5')
+                    if took_trades % 200 == 0 and self.train_mode:
+                        self.model.save_weights(f'./save_model/EUR_USD_DQN_after_{took_trades}_2002_2019_trades.h5')
 
                 i += 1
             except IndexError as e:
                 break
 
-        print(f'Acc profits: {acc_profits}')
-        print(f'Acc losses: {acc_losses}')
+        print(f'Acc profits: {acc_profits} pips')
+        print(f'Acc losses: {acc_losses} pips')
 
 
-print(f'STARTING TO TRAIN MODEL.........')
-ForexAgent().start()
-# print(f'STARTING TO TEST MODEL.........')
-# ForexAgent(train_mode=False).start()
+# print(f'STARTING TO TRAIN MODEL.........')
+# ForexAgent().start()
+print(f'STARTING TO TEST MODEL.........')
+ForexAgent(train_mode=False, balance=1000, lot=0.1).start()

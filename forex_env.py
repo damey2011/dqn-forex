@@ -5,36 +5,30 @@ import matplotlib.pyplot as plt
 DAY_MAP = {'Monday': 0.1, 'Tuesday': 0.2, 'Wednesday': 0.3, 'Thursday': 0.4, 'Friday': 0.5, 'Saturday': 0.6,
            'Sunday': 0.7}
 
-STATE_RANGE = 10
+STATE_RANGE = 15
 
-USE_TIME_FRAME = 15
-# This is only valid in this case when the dataset is in 1min
+INPUT_DATA_COL_INDEX = 1
 
-DATA_RANGE = [4, 5]
-DATA_RANGE[1] += 1
-# This is the index range of columns we want to include in the state
+TIME_JUMP = 2
 
-INPUT_DATA_COL_INDEX = 2
-
-TIME_JUMP = 30
-
-IS_COMPLETE_DATA_STRUCTURE = True
+IS_COMPLETE_DATA_STRUCTURE = False
 
 
 class ForexEnv:
-    def __init__(self, pair='EURUSD', lot=1.0, is_test=True, auto_reset_env=True, train_data=True):
+    def __init__(self, pair='EURUSD', balance=1000, lot=1.0, is_test=True, auto_reset_env=True, train_data=True):
         self.pair = pair
+        self.balance = balance
         self.is_test = is_test
         """0: buy, 1: sell, 2: do nothing"""
         self.action_space = [
             0, 1, 2
         ]
         self.action_space_n = len(self.action_space)
-        self.state_space_n = STATE_RANGE * (DATA_RANGE[1] - DATA_RANGE[0])
+        self.state_space_n = STATE_RANGE
         self.lot = lot
         self.open_position_exists = False
-        self.sl = -10
-        self.tp = 20
+        self.sl = -30
+        self.tp = 100
         """
         Current Assumptions:
             1. We are using a fixed lot size
@@ -54,29 +48,29 @@ class ForexEnv:
         if is_test:
             self.data = self.load_data()
 
-    # def divide_data(self):
-    #     df2 = pd.read_csv(
-    #         './data/EURUSD-D1-2010-2019.csv',
-    #         sep=',',
-    #         low_memory=False,
-    #         header=None
-    #     )
-    #     rows = df2.shape[0]
-    #     train_rows = int(0.75 * rows)
-    #     test_rows = rows - train_rows
-    #     df2.head(train_rows).to_csv('./data/EURUSD_2010_2019_TRAIN.csv', index=None, header=None)
-    #     df2.tail(test_rows).to_csv('./data/EURUSD_2010_2019_TEST.csv', index=None, header=None)
+    def divide_data(self):
+        df2 = pd.read_csv(
+            './data/EURUSD-D1-2010-2019.csv',
+            sep=',',
+            low_memory=False,
+            header=None
+        )
+        rows = df2.shape[0]
+        train_rows = int(0.75 * rows)
+        test_rows = rows - train_rows
+        df2.head(train_rows).to_csv('./data/EURUSD_2002_2019_D1_TRAIN.csv', index=None, header=None)
+        df2.tail(test_rows).to_csv('./data/EURUSD_2002_2019_D1_TEST.csv', index=None, header=None)
 
-    def load_data(self, complete=True):
+    def load_data(self):
         if self.train_data:
             df2 = pd.read_csv(
-                './data/EURUSD_TRAIN.csv',
+                './data/EURUSD_TRAIN.csv' if IS_COMPLETE_DATA_STRUCTURE else './data/EURUSD_2002_2019_D1_TRAIN.csv',
                 sep=',',
                 low_memory=False,
             )
         else:
             df2 = pd.read_csv(
-                './data/EURUSD_TRAIN.csv',
+                './data/EURUSD_TRAIN.csv' if IS_COMPLETE_DATA_STRUCTURE else './data/EURUSD_2002_2019_D1_TEST.csv',
                 sep=',',
                 low_memory=False,
             )
@@ -104,18 +98,21 @@ class ForexEnv:
             profit = start - target
         return round(profit * self.get_pair_mult_index(), 2)
 
+    def calculate_balance(self, pips):
+        if self.pair == 'EURUSD':
+            # It's $10 per pip for EURUSD
+            self.balance += (pips * self.lot * 10)
+
     def current_state(self):
-        RANGE = STATE_RANGE * USE_TIME_FRAME
-        start = min(self.pointer - RANGE, 0) if self.pointer < RANGE else self.pointer - RANGE
-        # We are considering closing prices as the states, hence why we have index 3
-        return list(self.data[start: self.pointer: USE_TIME_FRAME, DATA_RANGE[0]:DATA_RANGE[1]].flatten())
+        start = self.pointer - STATE_RANGE
+        state = list(self.data[start: self.pointer, INPUT_DATA_COL_INDEX].flatten())
+        return state
 
     def get_next_state(self):
-        RANGE = STATE_RANGE * USE_TIME_FRAME
         next_pointer = self.pointer + TIME_JUMP
-        start = min(next_pointer - RANGE, 0) if next_pointer < RANGE else next_pointer - RANGE
-        # We are considering closing prices as the states, hence why we have index 3
-        return list(self.data[start: next_pointer: USE_TIME_FRAME, DATA_RANGE[0]:DATA_RANGE[1]].flatten())
+        start = next_pointer - STATE_RANGE
+        state = list(self.data[start: next_pointer, INPUT_DATA_COL_INDEX].flatten())
+        return state
 
     def get_current_price(self):
         return self.data[self.pointer][3]
@@ -190,6 +187,7 @@ class ForexEnv:
 
         if self.open_position_exists:
             outcome, points = self.validate_current_trade()
+            self.calculate_balance(points)
             next_state = self.get_next_state()
             if outcome == 'sl_hit':
                 if self.auto_reset_env:
@@ -210,7 +208,6 @@ class ForexEnv:
         self.entry_price = None
         self.entry_pointer_index = None
         return self.current_state()
-
 
 #
 # env = ForexEnv()
