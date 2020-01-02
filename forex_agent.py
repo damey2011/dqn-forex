@@ -69,7 +69,7 @@ class ForexAgent:
     def get_action(self, state):
         if np.random.rand() <= self.epsilon and self.train_mode:
             return np.random.choice(self.env.action_space)
-        q_value = self.model.predict(state)
+        q_value = self.model.predict([state])
         return np.argmax(q_value[0])
 
     def push_to_experience(self, state, action, reward, next_state, done):
@@ -82,7 +82,6 @@ class ForexAgent:
             return
         batch_size = min(self.batch_size, self.experience.size)
         states, actions, rewards, next_states, dones = self.experience.sample(batch_size)
-
         output = self.model.predict(states)
         target = self.target_model.predict(next_states)
 
@@ -117,7 +116,9 @@ class ForexAgent:
                 peak_price = 0
                 profits, losses, trades, pips_collected = 0, 0, [], []
                 while not done:
-                    action = self.get_action([state]) if not self.env.open_position_exists else None
+                    if any(state):
+                        state = state if len(state) == self.state_space_n else state[0]
+                    action = self.get_action(state) if not self.env.open_position_exists else None
                     # We want to send do_nothing as action, to speed up the process when a position is open already
                     next_state, reward, done, info = self.env.step(action)
                     state = next_state

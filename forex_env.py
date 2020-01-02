@@ -5,13 +5,9 @@ import matplotlib.pyplot as plt
 DAY_MAP = {'Monday': 0.1, 'Tuesday': 0.2, 'Wednesday': 0.3, 'Thursday': 0.4, 'Friday': 0.5, 'Saturday': 0.6,
            'Sunday': 0.7}
 
-STATE_RANGE = 10
+STATE_RANGE = 100
 
-USE_TIME_FRAME = 15
-# This is only valid in this case when the dataset is in 1min
-
-DATA_RANGE = [4, 5]
-# This is the index range of columns we want to include in the state
+STATE_DATA_INDEX = 2
 
 TIME_JUMP = 30
 
@@ -25,7 +21,7 @@ class ForexEnv:
             0, 1, 2
         ]
         self.action_space_n = len(self.action_space)
-        self.state_space_n = STATE_RANGE * (DATA_RANGE[1] - DATA_RANGE[0])
+        self.state_space_n = STATE_RANGE
         self.lot = lot
         self.open_position_exists = False
         self.sl = -10
@@ -97,17 +93,15 @@ class ForexEnv:
         return round(profit * self.get_pair_mult_index(), 2)
 
     def current_state(self):
-        RANGE = STATE_RANGE * USE_TIME_FRAME
-        start = min(self.pointer - RANGE, 0) if self.pointer < RANGE else self.pointer - RANGE
-        # We are considering closing prices as the states, hence why we have index 3
-        return list(self.data[start: self.pointer: USE_TIME_FRAME, DATA_RANGE[0]:DATA_RANGE[1]].flatten())
+        start = self.pointer - STATE_RANGE
+        state = list(self.data[start: self.pointer, STATE_DATA_INDEX].flatten())
+        return state
 
     def get_next_state(self):
-        RANGE = STATE_RANGE * USE_TIME_FRAME
         next_pointer = self.pointer + TIME_JUMP
-        start = min(next_pointer - RANGE, 0) if next_pointer < RANGE else next_pointer - RANGE
-        # We are considering closing prices as the states, hence why we have index 3
-        return list(self.data[start: next_pointer: USE_TIME_FRAME, DATA_RANGE[0]:DATA_RANGE[1]].flatten())
+        start = next_pointer - STATE_RANGE
+        state = list(self.data[start: next_pointer, STATE_DATA_INDEX].flatten())
+        return state
 
     def get_current_price(self):
         return self.data[self.pointer][3]
@@ -120,7 +114,7 @@ class ForexEnv:
     def current_trade_peak_and_bottom(self):
         if self.open_position_exists:
             data_to_check = self.data_range(self.entry_pointer_index, self.pointer)
-            return np.max(data_to_check[:, 4:5]), np.min(data_to_check[:, 4:5])
+            return np.max(data_to_check[:, 4:6]), np.min(data_to_check[:, 4:6])
 
     def validate_current_trade(self):
         if self.open_position_exists:
