@@ -11,9 +11,14 @@ USE_TIME_FRAME = 15
 # This is only valid in this case when the dataset is in 1min
 
 DATA_RANGE = [4, 5]
+DATA_RANGE[1] += 1
 # This is the index range of columns we want to include in the state
 
+INPUT_DATA_COL_INDEX = 2
+
 TIME_JUMP = 30
+
+IS_COMPLETE_DATA_STRUCTURE = True
 
 
 class ForexEnv:
@@ -51,7 +56,7 @@ class ForexEnv:
 
     # def divide_data(self):
     #     df2 = pd.read_csv(
-    #         './data/EURUSD-2018-2019.txt',
+    #         './data/EURUSD-D1-2010-2019.csv',
     #         sep=',',
     #         low_memory=False,
     #         header=None
@@ -59,10 +64,10 @@ class ForexEnv:
     #     rows = df2.shape[0]
     #     train_rows = int(0.75 * rows)
     #     test_rows = rows - train_rows
-    #     df2.head(train_rows).to_csv('./data/EURUSD_2018_2019_TRAIN.csv', index=None, header=None)
-    #     df2.tail(test_rows).to_csv('./data/EURUSD_2018_2019_TEST.csv', index=None, header=None)
+    #     df2.head(train_rows).to_csv('./data/EURUSD_2010_2019_TRAIN.csv', index=None, header=None)
+    #     df2.tail(test_rows).to_csv('./data/EURUSD_2010_2019_TEST.csv', index=None, header=None)
 
-    def load_data(self):
+    def load_data(self, complete=True):
         if self.train_data:
             df2 = pd.read_csv(
                 './data/EURUSD_TRAIN.csv',
@@ -75,11 +80,14 @@ class ForexEnv:
                 sep=',',
                 low_memory=False,
             )
-        df2.columns = ['Pair', 'Date', 'Time', 'Open', 'Close', 'Low', 'High', 'Volume']
-        df2.Time = df2.Time / 1000000
-        df2.Date = pd.to_datetime(df2.Date, format='%Y%m%d')
-        df2['WeekDay'] = df2.Date.dt.day_name().map(DAY_MAP)
-        df2 = df2.reindex(columns=['WeekDay', 'Time', 'Open', 'Close', 'Low', 'High'])
+        if IS_COMPLETE_DATA_STRUCTURE:
+            df2.columns = ['Pair', 'Date', 'Time', 'Open', 'Close', 'Low', 'High', 'Volume']
+            df2.Time = df2.Time / 1000000
+            df2.Date = pd.to_datetime(df2.Date, format='%Y%m%d')
+            df2['WeekDay'] = df2.Date.dt.day_name().map(DAY_MAP)
+            df2 = df2.reindex(columns=['WeekDay', 'Time', 'Open', 'Close', 'Low', 'High'])
+        else:
+            df2.columns = ['Date', 'Close', 'High', 'Low']
         return df2.to_numpy()
 
     def get_pair_mult_index(self):
@@ -120,7 +128,9 @@ class ForexEnv:
     def current_trade_peak_and_bottom(self):
         if self.open_position_exists:
             data_to_check = self.data_range(self.entry_pointer_index, self.pointer)
-            return np.max(data_to_check[:, 4:5]), np.min(data_to_check[:, 4:5])
+            if IS_COMPLETE_DATA_STRUCTURE:
+                return np.max(data_to_check[:, 4:6]), np.min(data_to_check[:, 4:6])
+            return np.max(data_to_check[:, 2:4]), np.min(data_to_check[:, 2:4])
 
     def validate_current_trade(self):
         if self.open_position_exists:
@@ -200,6 +210,7 @@ class ForexEnv:
         self.entry_price = None
         self.entry_pointer_index = None
         return self.current_state()
+
 
 #
 # env = ForexEnv()
