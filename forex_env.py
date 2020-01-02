@@ -9,7 +9,9 @@ STATE_RANGE = 100
 
 STATE_DATA_INDEX = 2
 
-TIME_JUMP = 30
+TIME_JUMP = 15
+
+IS_COMPLETE_DATA_STRUCTURE = True
 
 
 class ForexEnv:
@@ -24,8 +26,8 @@ class ForexEnv:
         self.state_space_n = STATE_RANGE
         self.lot = lot
         self.open_position_exists = False
-        self.sl = -10
-        self.tp = 20
+        self.sl = -20
+        self.tp = 40
         """
         Current Assumptions:
             1. We are using a fixed lot size
@@ -114,7 +116,7 @@ class ForexEnv:
     def current_trade_peak_and_bottom(self):
         if self.open_position_exists:
             data_to_check = self.data_range(self.entry_pointer_index, self.pointer)
-            return np.max(data_to_check[:, 4:6]), np.min(data_to_check[:, 4:6])
+            return np.max(data_to_check[:, 5]), np.min(data_to_check[:, 4])
 
     def validate_current_trade(self):
         if self.open_position_exists:
