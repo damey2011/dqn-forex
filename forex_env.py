@@ -35,6 +35,7 @@ class ForexEnv:
             2. Maximum draw down of 20 pips
             3. We are using the close prices only right now, we might want to include the highs and the lows later so
                 the agent can know where it's wrong in cases of hitting sl/drawdown
+            4. The market doesnt reach both the SL and the TP in same period
         """
         """Test Params:"""
         self.pointer = STATE_RANGE
@@ -56,7 +57,7 @@ class ForexEnv:
             header=None
         )
         rows = df2.shape[0]
-        train_rows = int(0.75 * rows)
+        train_rows = int(0.70 * rows)
         test_rows = rows - train_rows
         df2.head(train_rows).to_csv('./data/EURUSD_2002_2019_D1_TRAIN.csv', index=None, header=None)
         df2.tail(test_rows).to_csv('./data/EURUSD_2002_2019_D1_TEST.csv', index=None, header=None)
@@ -116,6 +117,9 @@ class ForexEnv:
 
     def get_current_price(self):
         return self.data[self.pointer][3]
+
+    def get_current_date(self):
+        return self.data[self.pointer][0]
 
     def data_range(self, start_index, end_index):
         data_to_check = self.data[start_index: end_index]

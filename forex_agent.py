@@ -1,5 +1,7 @@
+import datetime
 import random
-import pylab
+import matplotlib.pyplot as plt
+import matplotlib.dates as mdates
 
 import numpy as np
 from tensorflow import keras
@@ -104,12 +106,21 @@ class ForexAgent:
 
         self.model.fit(states, output, batch_size=batch_size, epochs=1, verbose=0)
 
+    def plot_graph(self, x, y, path):
+        x = [datetime.datetime.strptime(d, '%Y-%m-%d').date() for d in x]
+        plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d'))
+        plt.gca().xaxis.set_major_locator(mdates.MonthLocator(interval=6 if not self.train_mode else 12))
+        plt.plot(x, y)
+        plt.gcf().autofmt_xdate()
+        plt.savefig(path)
+
     def start(self):
         acc_profits = 0
         acc_losses = 0
         took_trades = 0
         acc_trades = []
         acc_bal = []
+        acc_trade_count_list = []
         total_trades_won = 0
         total_trades_lost = 0
         i = 0
@@ -118,7 +129,7 @@ class ForexAgent:
                 done = False
                 state = self.env.reset()
                 peak_price = 0
-                profits, losses, trades, bals = 0, 0, [], []
+                profits, losses, trades, bals, trade_count_list = 0, 0, [], [], []
                 while not done:
                     action = self.get_action([state]) if not self.env.open_position_exists else None
                     # We want to send do_nothing as action, to speed up the process when a position is open already
@@ -142,13 +153,16 @@ class ForexAgent:
                             total_trades_won += 1
 
                         if info in ['sl_hit', 'tp_hit']:
-                            # For plotting sake
-                            trades.append(took_trades)
-                            acc_trades.append(took_trades)
-                            acc_bal.append(self.env.balance)
-                            bals.append(self.env.balance)
-                            # End for plotting sake
                             took_trades += 1
+                            trades.append(self.env.get_current_date())
+                            bals.append(self.env.balance)
+                            trade_count_list.append(took_trades)
+                            # For plotting sake, and we want to plot only 20 days interval
+                            if took_trades % 20 == 0:
+                                acc_trades.append(self.env.get_current_date())
+                                acc_bal.append(self.env.balance)
+                                acc_trade_count_list.append(took_trades)
+                            # End for plotting sake
                             print(f'Got P: {profits}, L: {losses} pips for trade {took_trades}')
                             print(f'Entered at {self.env.entry_price} and was exited at {peak_price}')
                             acc_profits += profits
@@ -157,20 +171,27 @@ class ForexAgent:
                                   f'Diff: {acc_profits - abs(acc_losses)}\n')
 
                     if took_trades % 50 == 0:
-                        pylab.plot(acc_trades, acc_bal, 'b')
                         if self.train_mode:
-                            pylab.savefig("./performances/eurusd_dqn.png")
-                            pylab.plot(trades, bals, 'b')
-                            pylab.savefig(f"./performances/eurusd_dqn_btw_{took_trades - 50}_and_{took_trades}.png")
+                            self.plot_graph(acc_trades, acc_bal, './performances/eurusd_dqn.png')
+                            self.plot_graph(trades, bals,
+                                            f"./performances/eurusd_dqn_btw_{took_trades - 50}_and_{took_trades}.png"
+                                            )
                             self.model.save_weights('./save_model/EUR_USD_DQN_model.h5')
                         else:
-                            pylab.savefig("./performances/eurusd_dqn_test_data.png")
+                            self.plot_graph(
+                                acc_trades, acc_bal, './performances/eurusd_dqn_test_data.png'
+                            )
 
                     if took_trades % 200 == 0 and self.train_mode:
                         self.model.save_weights(f'./save_model/EUR_USD_DQN_after_{took_trades}_2002_2019_trades.h5')
 
                 i += 1
             except IndexError as e:
+                if self.train_mode:
+                    self.plot_graph(acc_trades, acc_bal, './performances/eurusd_dqn.png')
+                else:
+                    self.plot_graph(acc_trades, acc_bal, './performances/eurusd_dqn_test_data.png')
+                self.model.save_weights('./save_model/EUR_USD_DQN_model.h5')
                 break
 
         print(f'Acc profits: {acc_profits} pips')
