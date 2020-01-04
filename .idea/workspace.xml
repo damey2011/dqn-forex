@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2a4a06cc-d77a-447c-9ad2-c60b54445d43" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/forex_agent.py" beforeDir="false" afterPath="$PROJECT_DIR$/forex_agent.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/forex_env.py" beforeDir="false" afterPath="$PROJECT_DIR$/forex_env.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/performances/eurusd_dqn.png" beforeDir="false" afterPath="$PROJECT_DIR$/performances/eurusd_dqn.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/performances/eurusd_dqn_btw_-50_and_0.png" beforeDir="false" afterPath="$PROJECT_DIR$/performances/eurusd_dqn_btw_-50_and_0.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/performances/eurusd_dqn_btw_0_and_50.png" beforeDir="false" afterPath="$PROJECT_DIR$/performances/eurusd_dqn_btw_0_and_50.png" afterDir="false" />
@@ -15,7 +13,12 @@
       <change beforePath="$PROJECT_DIR$/performances/eurusd_dqn_btw_300_and_350.png" beforeDir="false" afterPath="$PROJECT_DIR$/performances/eurusd_dqn_btw_300_and_350.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/performances/eurusd_dqn_btw_350_and_400.png" beforeDir="false" afterPath="$PROJECT_DIR$/performances/eurusd_dqn_btw_350_and_400.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/performances/eurusd_dqn_btw_400_and_450.png" beforeDir="false" afterPath="$PROJECT_DIR$/performances/eurusd_dqn_btw_400_and_450.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/performances/eurusd_dqn_btw_450_and_500.png" beforeDir="false" afterPath="$PROJECT_DIR$/performances/eurusd_dqn_btw_450_and_500.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/performances/eurusd_dqn_btw_500_and_550.png" beforeDir="false" afterPath="$PROJECT_DIR$/performances/eurusd_dqn_btw_500_and_550.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/performances/eurusd_dqn_btw_50_and_100.png" beforeDir="false" afterPath="$PROJECT_DIR$/performances/eurusd_dqn_btw_50_and_100.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/performances/eurusd_dqn_btw_550_and_600.png" beforeDir="false" afterPath="$PROJECT_DIR$/performances/eurusd_dqn_btw_550_and_600.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/performances/eurusd_dqn_btw_600_and_650.png" beforeDir="false" afterPath="$PROJECT_DIR$/performances/eurusd_dqn_btw_600_and_650.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/performances/eurusd_dqn_test_data.png" beforeDir="false" afterPath="$PROJECT_DIR$/performances/eurusd_dqn_test_data.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/save_model/EUR_USD_DQN_model.h5" beforeDir="false" afterPath="$PROJECT_DIR$/save_model/EUR_USD_DQN_model.h5" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -27,7 +30,7 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/project_implementations$deepqtaxi.coverage" NAME="deepqtaxi Coverage Results" MODIFIED="1576833791550" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/project_implementations$forex_env.coverage" NAME="forex_env Coverage Results" MODIFIED="1578136045278" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/project_implementations$forex_agent.coverage" NAME="forex_agent Coverage Results" MODIFIED="1578138920863" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/project_implementations$forex_agent.coverage" NAME="forex_agent Coverage Results" MODIFIED="1578156560091" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FUSProjectUsageTrigger">
     <session id="759127797">
@@ -69,14 +72,14 @@
           <entry key="Python Console" value="167" />
           <entry key="csv" value="3" />
           <entry key="gitignore" value="16" />
-          <entry key="py" value="20477" />
+          <entry key="py" value="20521" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSV" value="3" />
           <entry key="PLAIN_TEXT" value="16" />
-          <entry key="Python" value="20644" />
+          <entry key="Python" value="20688" />
         </counts>
       </usages-collector>
     </session>
@@ -86,11 +89,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/forex_agent.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="305">
-              <caret line="201" lean-forward="true" selection-start-line="201" selection-end-line="201" />
+            <state relative-caret-position="167">
+              <caret line="135" selection-start-line="135" selection-end-line="135" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
-                <marker date="1578138887900" expanded="true" signature="3569:3924" ph="..." />
+                <marker date="1578156560012" expanded="true" signature="3661:4016" ph="..." />
               </folding>
             </state>
           </provider>
@@ -108,8 +111,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/forex_env.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3263">
-              <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+            <state relative-caret-position="-623">
+              <caret line="171" selection-start-line="171" selection-end-line="171" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
                 <marker date="1578136187700" expanded="true" signature="3262:3395" ph="..." />
@@ -197,11 +200,6 @@
             <path>
               <item name="project-implementations" type="b2602c69:ProjectViewProjectNode" />
               <item name="project-implementations" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="project-implementations" type="b2602c69:ProjectViewProjectNode" />
-              <item name="project-implementations" type="462c0819:PsiDirectoryNode" />
-              <item name="save_model" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -375,6 +373,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="838" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.28183118" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -406,8 +405,24 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/forex_agent.py</url>
+          <line>135</line>
+          <option name="timeStamp" value="90" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>self.plot_graph(acc_trade_count_list, acc_bal, './performances/eurusd_dqn_test_data.png')</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>self.model.save_weights('./save_model/EUR_USD_DQN_model.h5')</expression-string>
         <language-id>Python</language-id>
@@ -445,11 +460,6 @@
       </expression>
       <expression>
         <expression-string>self.model.save_weights('deepqtaxi_weights.h5')</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>self.model.save_weights('./deepqtaxi_weights.h5')</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -796,8 +806,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/forex_env.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3263">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        <state relative-caret-position="-623">
+          <caret line="171" selection-start-line="171" selection-end-line="171" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
             <marker date="1578136187700" expanded="true" signature="3262:3395" ph="..." />
@@ -808,11 +818,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/forex_agent.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="201" lean-forward="true" selection-start-line="201" selection-end-line="201" />
+        <state relative-caret-position="167">
+          <caret line="135" selection-start-line="135" selection-end-line="135" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
-            <marker date="1578138887900" expanded="true" signature="3569:3924" ph="..." />
+            <marker date="1578156560012" expanded="true" signature="3661:4016" ph="..." />
           </folding>
         </state>
       </provider>

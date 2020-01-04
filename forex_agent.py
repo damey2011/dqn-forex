@@ -89,6 +89,7 @@ class ForexAgent:
         states, actions, rewards, next_states, dones = self.experience.sample(batch_size)
 
         output = self.model.predict(states)
+        target_one = self.model.predict(next_states)
         target = self.target_model.predict(next_states)
 
         for i in range(batch_size):
@@ -102,7 +103,8 @@ class ForexAgent:
                 output[i][actions[i]] = reward
             else:
                 #     We use 2 here, cos if it's not done, then it should always do nothing
-                output[i][2] = reward + self.discount_factor * (np.amax(target[i]))
+                a = np.argmax(target_one[i])
+                output[i][2] = reward + self.discount_factor * (target[i][a])
 
         self.model.fit(states, output, batch_size=batch_size, epochs=1, verbose=0)
 
