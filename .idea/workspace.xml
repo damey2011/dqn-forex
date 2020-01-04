@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="2a4a06cc-d77a-447c-9ad2-c60b54445d43" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deepqtaxi.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/forex_agent.py" beforeDir="false" afterPath="$PROJECT_DIR$/forex_agent.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/forex_env.py" beforeDir="false" afterPath="$PROJECT_DIR$/forex_env.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/performances/eurusd_dqn.png" beforeDir="false" afterPath="$PROJECT_DIR$/performances/eurusd_dqn.png" afterDir="false" />
@@ -14,26 +13,10 @@
       <change beforePath="$PROJECT_DIR$/performances/eurusd_dqn_btw_200_and_250.png" beforeDir="false" afterPath="$PROJECT_DIR$/performances/eurusd_dqn_btw_200_and_250.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/performances/eurusd_dqn_btw_250_and_300.png" beforeDir="false" afterPath="$PROJECT_DIR$/performances/eurusd_dqn_btw_250_and_300.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/performances/eurusd_dqn_btw_300_and_350.png" beforeDir="false" afterPath="$PROJECT_DIR$/performances/eurusd_dqn_btw_300_and_350.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/performances/eurusd_dqn_btw_350_and_400.png" beforeDir="false" afterPath="$PROJECT_DIR$/performances/eurusd_dqn_btw_350_and_400.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/performances/eurusd_dqn_btw_400_and_450.png" beforeDir="false" afterPath="$PROJECT_DIR$/performances/eurusd_dqn_btw_400_and_450.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/performances/eurusd_dqn_btw_50_and_100.png" beforeDir="false" afterPath="$PROJECT_DIR$/performances/eurusd_dqn_btw_50_and_100.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/performances/eurusd_dqn_test_data.png" beforeDir="false" afterPath="$PROJECT_DIR$/performances/eurusd_dqn_test_data.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/save_model/EUR_USD_DQN_2018_2019_model.h5" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/save_model/EUR_USD_DQN_after_0_2002_2019_trades.h5" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/save_model/EUR_USD_DQN_after_0_2018_2019_trades.h5" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/save_model/EUR_USD_DQN_after_1000_2018_2019_trades.h5" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/save_model/EUR_USD_DQN_after_1200_2018_2019_trades.h5" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/save_model/EUR_USD_DQN_after_1400_2018_2019_trades.h5" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/save_model/EUR_USD_DQN_after_1600_2018_2019_trades.h5" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/save_model/EUR_USD_DQN_after_1800_2018_2019_trades.h5" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/save_model/EUR_USD_DQN_after_2000_2018_2019_trades.h5" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/save_model/EUR_USD_DQN_after_200_2002_2019_trades.h5" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/save_model/EUR_USD_DQN_after_200_2018_2019_trades.h5" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/save_model/EUR_USD_DQN_after_2200_2018_2019_trades.h5" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/save_model/EUR_USD_DQN_after_400_2002_2019_trades.h5" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/save_model/EUR_USD_DQN_after_400_2018_2019_trades.h5" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/save_model/EUR_USD_DQN_after_600_2018_2019_trades.h5" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/save_model/EUR_USD_DQN_after_800_2018_2019_trades.h5" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/save_model/EUR_USD_DQN_model.h5" beforeDir="false" afterPath="$PROJECT_DIR$/save_model/EUR_USD_DQN_model.h5" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/save_model/deepqtaxi_weights.h5" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -43,8 +26,8 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/project_implementations$deepqtaxi.coverage" NAME="deepqtaxi Coverage Results" MODIFIED="1576833791550" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/project_implementations$forex_env.coverage" NAME="forex_env Coverage Results" MODIFIED="1577988196242" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/project_implementations$forex_agent.coverage" NAME="forex_agent Coverage Results" MODIFIED="1578093640612" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/project_implementations$forex_env.coverage" NAME="forex_env Coverage Results" MODIFIED="1578136045278" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/project_implementations$forex_agent.coverage" NAME="forex_agent Coverage Results" MODIFIED="1578138920863" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FUSProjectUsageTrigger">
     <session id="759127797">
@@ -65,20 +48,20 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="csv" value="13" />
+          <entry key="csv" value="15" />
           <entry key="gitignore" value="1" />
           <entry key="png" value="1" />
-          <entry key="py" value="78" />
+          <entry key="py" value="84" />
           <entry key="rtf" value="1" />
           <entry key="txt" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CSV" value="13" />
+          <entry key="CSV" value="15" />
           <entry key="Image" value="1" />
           <entry key="PLAIN_TEXT" value="6" />
-          <entry key="Python" value="78" />
+          <entry key="Python" value="84" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -86,28 +69,38 @@
           <entry key="Python Console" value="167" />
           <entry key="csv" value="3" />
           <entry key="gitignore" value="16" />
-          <entry key="py" value="19460" />
+          <entry key="py" value="20477" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSV" value="3" />
           <entry key="PLAIN_TEXT" value="16" />
-          <entry key="Python" value="19627" />
+          <entry key="Python" value="20644" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/q_learning.py">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/forex_agent.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="421">
-              <caret line="81" column="36" selection-start-line="81" selection-start-column="36" selection-end-line="81" selection-end-column="36" />
+            <state relative-caret-position="305">
+              <caret line="201" lean-forward="true" selection-start-line="201" selection-end-line="201" />
               <folding>
-                <element signature="e#543#552#0" expanded="true" />
+                <element signature="e#0#15#0" expanded="true" />
+                <marker date="1578138887900" expanded="true" signature="3569:3924" ph="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/anaconda3/envs/rl/lib/python3.7/site-packages/matplotlib/axes/_base.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="133">
+              <caret line="269" selection-start-line="269" selection-end-line="269" />
             </state>
           </provider>
         </entry>
@@ -115,75 +108,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/forex_env.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2066">
-              <caret line="59" column="29" selection-start-line="59" selection-start-column="29" selection-end-line="59" selection-end-column="29" />
+            <state relative-caret-position="-3263">
+              <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
-                <marker date="1578093801440" expanded="true" signature="3562:3695" ph="..." />
-                <marker date="1578093801440" expanded="true" signature="4205:4253" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/forex_agent.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="78">
-              <caret line="24" column="8" selection-start-line="24" selection-start-column="8" selection-end-line="24" selection-end-column="8" />
-              <folding>
-                <element signature="e#0#15#0" expanded="true" />
-                <marker date="1578093478882" expanded="true" signature="3569:3916" ph="..." />
+                <marker date="1578136187700" expanded="true" signature="3262:3395" ph="..." />
+                <marker date="1578136187700" expanded="true" signature="3905:3953" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/anaconda3/envs/rl/lib/python3.7/site-packages/matplotlib/dates.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="1659" column="8" selection-start-line="1659" selection-start-column="8" selection-end-line="1659" selection-end-column="8" />
+        <entry file="file://$PROJECT_DIR$/data/EURUSD_4H_TRAIN.csv">
+          <provider selected="true" editor-type-id="csv-text-editor">
+            <state relative-caret-position="48">
+              <caret line="3" column="70" lean-forward="true" selection-start-line="3" selection-start-column="70" selection-end-line="3" selection-end-column="70" />
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/anaconda3/envs/rl/lib/python3.7/site-packages/matplotlib/ticker.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="1519" selection-start-line="1519" selection-end-line="1519" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/anaconda3/envs/rl/lib/python3.7/_strptime.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="141">
-              <caret line="358" selection-start-line="358" selection-end-line="358" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/anaconda3/envs/rl/lib/python3.7/site-packages/matplotlib/artist.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="141">
-              <caret line="969" selection-start-line="969" selection-end-line="969" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/experience_replay.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="512">
-              <caret line="32" selection-start-line="32" selection-end-line="32" />
-              <folding>
-                <element signature="e#0#18#0" expanded="true" />
-              </folding>
-            </state>
+          <provider editor-type-id="csv-table-editor">
+            <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
           </provider>
         </entry>
       </file>
@@ -207,6 +151,8 @@
       <find>DATA_RA</find>
       <find>USE_TIME_FRAME</find>
       <find>entered</find>
+      <find>IS_COMPLETE_DATA_STRUCTURE</find>
+      <find>current_trade_</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -222,8 +168,8 @@
         <option value="$PROJECT_DIR$/data/EURUSD-2018-2019.txt" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/data/EURUSD-D1-2010-2019.csv" />
-        <option value="$PROJECT_DIR$/forex_agent.py" />
         <option value="$PROJECT_DIR$/forex_env.py" />
+        <option value="$PROJECT_DIR$/forex_agent.py" />
       </list>
     </option>
   </component>
@@ -270,6 +216,10 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/data" />
+      <recent name="$PROJECT_DIR$/save_model" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/data" />
       <recent name="$PROJECT_DIR$/save_model" />
@@ -287,7 +237,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.forex_agent">
+  <component name="RunManager" selected="Python.forex_env">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="project-implementations" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -506,55 +456,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../qlearning/taxi.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="22" column="36" lean-forward="true" selection-end-line="100" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/anaconda3/envs/rl/lib/python3.7/site-packages/gym/core.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4219">
-          <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/anaconda3/envs/rl/lib/python3.7/site-packages/gym/wrappers/time_limit.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="48">
-          <caret line="3" column="24" selection-start-line="3" selection-start-column="24" selection-end-line="3" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/anaconda3/envs/rl/lib/python3.7/site-packages/tensorflow_core/python/layers/core.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1200">
-          <caret line="84" column="6" selection-start-line="84" selection-start-column="6" selection-end-line="84" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/anaconda3/envs/rl/lib/python3.7/site-packages/tensorflow_core/python/keras/distribute/distributed_training_utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="461" selection-start-line="461" selection-end-line="461" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/anaconda3/envs/rl/lib/python3.7/site-packages/gym/envs/toy_text/discrete.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="482">
-          <caret line="53" selection-start-line="53" selection-end-line="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Library/Caches/PyCharm2018.2/python_stubs/-1494482568/numpy/core/_multiarray_umath.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-975">
-          <caret line="781" column="4" selection-start-line="781" selection-start-column="4" selection-end-line="781" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/anaconda3/envs/rl/lib/python3.7/site-packages/tensorflow_core/python/framework/constant_op.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="141">
@@ -590,13 +491,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="369">
           <caret line="2026" selection-start-line="2026" selection-end-line="2026" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/anaconda3/envs/rl/lib/python3.7/site-packages/pandas/core/frame.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-14">
-          <caret line="4478" column="8" selection-start-line="4478" selection-start-column="8" selection-end-line="4478" selection-end-column="8" />
         </state>
       </provider>
     </entry>
@@ -838,25 +732,87 @@
         <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/data/EURUSD_Candlestick_4_Hour_BID_01.01.2010-04.01.2020.csv">
+      <provider selected="true" editor-type-id="csv-text-editor">
+        <state relative-caret-position="352">
+          <caret line="22" column="75" selection-start-line="22" selection-start-column="75" selection-end-line="22" selection-end-column="75" />
+        </state>
+      </provider>
+      <provider editor-type-id="csv-table-editor">
+        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda3/envs/rl/lib/python3.7/site-packages/pandas/core/indexes/base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="5339" selection-start-line="5339" selection-end-line="5339" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda3/envs/rl/lib/python3.7/site-packages/pandas/core/frame.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-954">
+          <caret line="3977" column="8" selection-start-line="3977" selection-start-column="8" selection-end-line="3977" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda3/envs/rl/lib/python3.7/site-packages/tensorflow_core/python/eager/execute.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="207" selection-start-line="207" selection-end-line="207" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda3/envs/rl/lib/python3.7/site-packages/sklearn/utils/validation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="555" selection-start-line="555" selection-end-line="555" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/EURUSD_4H_TRAIN.csv">
+      <provider selected="true" editor-type-id="csv-text-editor">
+        <state relative-caret-position="48">
+          <caret line="3" column="70" lean-forward="true" selection-start-line="3" selection-start-column="70" selection-end-line="3" selection-end-column="70" />
+        </state>
+      </provider>
+      <provider editor-type-id="csv-table-editor">
+        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda3/envs/rl/lib/python3.7/multiprocessing/pool.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="410" selection-start-line="410" selection-end-line="410" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda3/envs/rl/lib/python3.7/site-packages/matplotlib/axes/_base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="269" selection-start-line="269" selection-end-line="269" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/forex_env.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2066">
-          <caret line="59" column="29" selection-start-line="59" selection-start-column="29" selection-end-line="59" selection-end-column="29" />
+        <state relative-caret-position="-3263">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
-            <marker date="1578093801440" expanded="true" signature="3562:3695" ph="..." />
-            <marker date="1578093801440" expanded="true" signature="4205:4253" ph="..." />
+            <marker date="1578136187700" expanded="true" signature="3262:3395" ph="..." />
+            <marker date="1578136187700" expanded="true" signature="3905:3953" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/forex_agent.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="78">
-          <caret line="24" column="8" selection-start-line="24" selection-start-column="8" selection-end-line="24" selection-end-column="8" />
+        <state relative-caret-position="305">
+          <caret line="201" lean-forward="true" selection-start-line="201" selection-end-line="201" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
-            <marker date="1578093478882" expanded="true" signature="3569:3916" ph="..." />
+            <marker date="1578138887900" expanded="true" signature="3569:3924" ph="..." />
           </folding>
         </state>
       </provider>

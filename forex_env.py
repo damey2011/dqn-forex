@@ -1,17 +1,10 @@
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
+from sklearn.preprocessing import MinMaxScaler
 
-DAY_MAP = {'Monday': 0.1, 'Tuesday': 0.2, 'Wednesday': 0.3, 'Thursday': 0.4, 'Friday': 0.5, 'Saturday': 0.6,
-           'Sunday': 0.7}
-
-STATE_RANGE = 15
-
-INPUT_DATA_COL_INDEX = 1
-
+STATE_RANGE = 30
+INPUT_DATA_COL_INDEX = [0, 1, 2, 3, 4]
 TIME_JUMP = 2
-
-IS_COMPLETE_DATA_STRUCTURE = False
 
 
 class ForexEnv:
@@ -24,11 +17,11 @@ class ForexEnv:
             0, 1, 2
         ]
         self.action_space_n = len(self.action_space)
-        self.state_space_n = STATE_RANGE
+        self.state_space_n = STATE_RANGE * len(INPUT_DATA_COL_INDEX)
         self.lot = lot
         self.open_position_exists = False
-        self.sl = -30
-        self.tp = 100
+        self.sl = -50
+        self.tp = 150
         """
         Current Assumptions:
             1. We are using a fixed lot size
@@ -40,49 +33,49 @@ class ForexEnv:
         """Test Params:"""
         self.pointer = STATE_RANGE
         self.current_position = 'buy'
+        self.current_trade_highest = None
+        self.current_trade_lowest = None
         self.entry_price = None
         self.entry_pointer_index = None
         self.current_profit = 0
         self.auto_reset_env = auto_reset_env
         self.train_data = train_data
 
+        self.scaler = MinMaxScaler(feature_range=(0, 1))
+
         if is_test:
             self.data = self.load_data()
 
     def divide_data(self):
         df2 = pd.read_csv(
-            './data/EURUSD-D1-2010-2019.csv',
+            './data/EURUSD_Candlestick_4_Hour_BID_01.01.2010-04.01.2020.csv',
             sep=',',
             low_memory=False,
             header=None
         )
+        df2.columns = ['Local Time', 'Open', 'High', 'Low', 'Close', 'Volume']
         rows = df2.shape[0]
         train_rows = int(0.70 * rows)
         test_rows = rows - train_rows
-        df2.head(train_rows).to_csv('./data/EURUSD_2002_2019_D1_TRAIN.csv', index=None, header=None)
-        df2.tail(test_rows).to_csv('./data/EURUSD_2002_2019_D1_TEST.csv', index=None, header=None)
+        df2.head(train_rows).to_csv('./data/EURUSD_4H_TRAIN.csv', index=None, header=None)
+        df2.tail(test_rows).to_csv('./data/EURUSD_4H_TEST.csv', index=None, header=None)
 
     def load_data(self):
         if self.train_data:
             df2 = pd.read_csv(
-                './data/EURUSD_TRAIN.csv' if IS_COMPLETE_DATA_STRUCTURE else './data/EURUSD_2002_2019_D1_TRAIN.csv',
+                './data/EURUSD_4H_TRAIN.csv',
                 sep=',',
                 low_memory=False,
             )
         else:
             df2 = pd.read_csv(
-                './data/EURUSD_TRAIN.csv' if IS_COMPLETE_DATA_STRUCTURE else './data/EURUSD_2002_2019_D1_TEST.csv',
+                './data/EURUSD_4H_TEST.csv',
                 sep=',',
                 low_memory=False,
             )
-        if IS_COMPLETE_DATA_STRUCTURE:
-            df2.columns = ['Pair', 'Date', 'Time', 'Open', 'Close', 'Low', 'High', 'Volume']
-            df2.Time = df2.Time / 1000000
-            df2.Date = pd.to_datetime(df2.Date, format='%Y%m%d')
-            df2['WeekDay'] = df2.Date.dt.day_name().map(DAY_MAP)
-            df2 = df2.reindex(columns=['WeekDay', 'Time', 'Open', 'Close', 'Low', 'High'])
-        else:
-            df2.columns = ['Date', 'Close', 'High', 'Low']
+        df2.columns = ['Local Time', 'Open', 'High', 'Low', 'Close', 'Volume']
+        df2[['Volume']] = self.scaler.fit_transform(df2[['Volume']])
+        df2 = df2.drop(['Local Time'], axis=1)
         return df2.to_numpy()
 
     def get_pair_mult_index(self):
@@ -129,14 +122,36 @@ class ForexEnv:
     def current_trade_peak_and_bottom(self):
         if self.open_position_exists:
             data_to_check = self.data_range(self.entry_pointer_index, self.pointer)
-            if IS_COMPLETE_DATA_STRUCTURE:
-                return np.max(data_to_check[:, 4:6]), np.min(data_to_check[:, 4:6])
             return np.max(data_to_check[:, 2:4]), np.min(data_to_check[:, 2:4])
 
     def validate_current_trade(self):
         if self.open_position_exists:
 
             assert self.current_position in ['buy', 'sell'], 'Invalid Position, should either be a buy or a sell'
+
+            # data_to_check = self.data_range(self.entry_pointer_index, self.pointer + 1)
+            # if data_to_check.any():
+            #     info, pips = 'active', 0
+            #     for d in data_to_check:
+            #         if self.current_position == 'buy':
+            #             temp = d[[0, 1, 2, 3]] - self.entry_price
+            #             self.current_trade_lowest = np.min(d[[0, 1, 2, 3]])
+            #             self.current_trade_highest = np.max(d[[0, 1, 2, 3]])
+            #         else:
+            #             temp = self.entry_price - d[[0, 1, 2, 3]]
+            #             self.current_trade_lowest = np.max(d[[0, 1, 2, 3]])
+            #             self.current_trade_highest = np.min(d[[0, 1, 2, 3]])
+            #         lowest = np.min(temp)
+            #         highest = np.max(temp)
+            #         if lowest * self.get_pair_mult_index() <= self.sl:
+            #             info, pips = 'sl_hit', self.sl
+            #             break
+            #         elif highest * self.get_pair_mult_index() >= self.tp:
+            #             info, pips = 'tp_hit', self.tp
+            #             break
+            #     return info, pips
+            # else:
+            #     return 'active', 0
 
             data_to_check = self.data_range(self.entry_pointer_index, self.pointer)
             if data_to_check.any():
@@ -212,31 +227,3 @@ class ForexEnv:
         self.entry_price = None
         self.entry_pointer_index = None
         return self.current_state()
-
-#
-# env = ForexEnv()
-# acc_profits = 0
-# acc_losses = 0
-# for i in range(10000):
-#     done = False
-#     env.reset()
-#     peak_price = 0
-#     profits, losses = 0, 0
-#     while not done:
-#         action = np.random.choice(env.action_space)
-#         next_state, reward, done, info = env.step(action)
-#         if done:
-#             if info == 'sl_hit':
-#                 peak_price = np.min([env.current_trade_peak_and_bottom])
-#                 losses -= reward
-#             if info == 'tp_hit':
-#                 peak_price = np.max([env.current_trade_peak_and_bottom])
-#                 profits += reward
-#
-#     print(f'Got P: {profits}, L: {losses} pips for trade {i}')
-#     print(f'Entered at {env.entry_price} and was exited at {peak_price}\n')
-#     acc_profits += profits
-#     acc_losses -= losses
-#
-# print(f'Acc profits: {acc_profits}')
-# print(f'Acc losses: {acc_losses}')

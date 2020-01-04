@@ -107,11 +107,11 @@ class ForexAgent:
         self.model.fit(states, output, batch_size=batch_size, epochs=1, verbose=0)
 
     def plot_graph(self, x, y, path):
-        x = [datetime.datetime.strptime(d, '%Y-%m-%d').date() for d in x]
-        plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d'))
-        plt.gca().xaxis.set_major_locator(mdates.MonthLocator(interval=6 if not self.train_mode else 12))
+        # x = [datetime.datetime.strptime(d, '%Y-%m-%d').date() for d in x]
+        # plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d'))
+        # plt.gca().xaxis.set_major_locator(mdates.MonthLocator(interval=6 if not self.train_mode else 12))
         plt.plot(x, y)
-        plt.gcf().autofmt_xdate()
+        # plt.gcf().autofmt_xdate()
         plt.savefig(path)
 
     def start(self):
@@ -144,11 +144,11 @@ class ForexAgent:
                             """If is train mode"""
                             self.update_target_model()
                         if info == 'sl_hit':
-                            peak_price = np.min([self.env.current_trade_peak_and_bottom])
+                            peak_price = self.env.current_trade_lowest
                             losses -= reward
                             total_trades_lost += 1
                         if info == 'tp_hit':
-                            peak_price = np.max([self.env.current_trade_peak_and_bottom])
+                            peak_price = self.env.current_trade_highest
                             profits += reward
                             total_trades_won += 1
 
@@ -172,25 +172,22 @@ class ForexAgent:
 
                     if took_trades % 50 == 0:
                         if self.train_mode:
-                            self.plot_graph(acc_trades, acc_bal, './performances/eurusd_dqn.png')
-                            self.plot_graph(trades, bals,
+                            self.plot_graph(acc_trade_count_list, acc_bal, './performances/eurusd_dqn.png')
+                            self.plot_graph(trade_count_list, bals,
                                             f"./performances/eurusd_dqn_btw_{took_trades - 50}_and_{took_trades}.png"
                                             )
                             self.model.save_weights('./save_model/EUR_USD_DQN_model.h5')
                         else:
                             self.plot_graph(
-                                acc_trades, acc_bal, './performances/eurusd_dqn_test_data.png'
+                                acc_trade_count_list, acc_bal, './performances/eurusd_dqn_test_data.png'
                             )
-
-                    if took_trades % 200 == 0 and self.train_mode:
-                        self.model.save_weights(f'./save_model/EUR_USD_DQN_after_{took_trades}_2002_2019_trades.h5')
 
                 i += 1
             except IndexError as e:
                 if self.train_mode:
-                    self.plot_graph(acc_trades, acc_bal, './performances/eurusd_dqn.png')
+                    self.plot_graph(acc_trade_count_list, acc_bal, './performances/eurusd_dqn.png')
                 else:
-                    self.plot_graph(acc_trades, acc_bal, './performances/eurusd_dqn_test_data.png')
+                    self.plot_graph(acc_trade_count_list, acc_bal, './performances/eurusd_dqn_test_data.png')
                 self.model.save_weights('./save_model/EUR_USD_DQN_model.h5')
                 break
 
