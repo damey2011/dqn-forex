@@ -74,6 +74,7 @@ class ForexAgent:
     def get_action(self, state):
         if np.random.rand() <= self.epsilon and self.train_mode:
             return np.random.choice(self.env.action_space)
+        print(np.array(state).shape)
         q_value = self.model.predict(state)
         return np.argmax(q_value[0])
 
@@ -195,7 +196,7 @@ class ForexAgent:
         print(f'Acc losses: {acc_losses} pips')
 
 
-# print(f'STARTING TO TRAIN MODEL.........')
-# ForexAgent().start()
-print(f'STARTING TO TEST MODEL.........')
-ForexAgent(train_mode=False, balance=1000, lot=0.1).start()
+print(f'STARTING TO TRAIN MODEL.........')
+ForexAgent().start()
+# print(f'STARTING TO TEST MODEL.........')
+# ForexAgent(train_mode=False, balance=1000, lot=0.1).start()

@@ -4,6 +4,7 @@ from sklearn.preprocessing import MinMaxScaler
 
 STATE_RANGE = 30
 INPUT_DATA_COL_INDEX = [0, 1, 2, 3, 4]
+CLOSING_PRICE_INDEX = 3
 TIME_JUMP = 2
 
 
@@ -109,7 +110,7 @@ class ForexEnv:
         return state
 
     def get_current_price(self):
-        return self.data[self.pointer][3]
+        return self.data[self.pointer][CLOSING_PRICE_INDEX]
 
     def get_current_date(self):
         return self.data[self.pointer][0]
@@ -122,7 +123,7 @@ class ForexEnv:
     def current_trade_peak_and_bottom(self):
         if self.open_position_exists:
             data_to_check = self.data_range(self.entry_pointer_index, self.pointer)
-            return np.max(data_to_check[:, 2:4]), np.min(data_to_check[:, 2:4])
+            return np.max(data_to_check[:, [0, 1, 2, 3]]), np.min(data_to_check[:, [0, 1, 2, 3]])
 
     def validate_current_trade(self):
         if self.open_position_exists:
